@@ -1,9 +1,16 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import Head from 'next/head';
+import Link from 'next/link';
 
 import { getPrismicClient } from '../../services/prismic';
+import Prismic from '@prismicio/client';
 
 import commonStyles from '../../styles/common.module.scss';
 import styles from './post.module.scss';
+import { FiCalendar } from 'react-icons/fi';
+import { format } from 'date-fns';
+import { useRouter } from 'next/router';
+import { ptBR } from 'date-fns/locale';
 
 interface Post {
   first_publication_date: string | null;
@@ -37,9 +44,9 @@ interface PostProps {
 //   // TODO
 // };
 
-// export const getStaticProps = async ({params }) => {
-//   const prismic = getPrismicClient({});
-//   const response = await prismic.getByUID(TODO);
+ export const getStaticProps = async ({params }) => {
+   const prismic = getPrismicClient({});
 
-//   // TODO
-// };
+   const response = await prismic.getByUID('posts', String(slug), {}))
+
+ };
